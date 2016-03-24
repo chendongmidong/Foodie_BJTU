@@ -4,12 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.*;
 import com.example.FoodieAndroidApp.R;
 import com.example.FoodieAndroidApp.model.Friend;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,35 +17,44 @@ import java.util.List;
 public class FriendAdapter extends ArrayAdapter<Friend>{
 
     private int resourceId;
-    public FriendAdapter(Context context, int itemViewResourceId, List<Friend> object){
+
+    private LayoutInflater inflater;
+    private ListView mListView;
+    private ViewHolder holder;
+
+    public FriendAdapter(Context context, int itemViewResourceId, List<Friend> object, ListView listView){
         super(context,itemViewResourceId,object);
         resourceId = itemViewResourceId;
+        inflater = LayoutInflater.from(getContext());
+        mListView = listView;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Friend friend = getItem(position);
 
-        View view;
-        ViewHolder viewHolder;
-
         if(convertView == null){
-            view = LayoutInflater.from(getContext()).inflate(resourceId,null);
-            viewHolder = new ViewHolder();
-            viewHolder.headPortrait = (ImageView) view.findViewById(R.id.friend_head_portrait);
-            viewHolder.name = (TextView)view.findViewById(R.id.friend_name);
-            view.setTag(viewHolder);
+            holder = new ViewHolder();
+            convertView = inflater.inflate(resourceId,null);
+            holder.headPortrait = (ImageView) convertView.findViewById(R.id.friend_portrait);
+            holder.name = (TextView)convertView.findViewById(R.id.friend_name);
+            holder.checkBox = (CheckBox)convertView.findViewById(R.id.friend_cb);
+            convertView.setTag(holder);
         }else {
-            view = convertView;
-            viewHolder = (ViewHolder) view.getTag();
+            holder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.headPortrait.setImageResource(friend.getHeadPortrait());
-        viewHolder.name.setText(friend.getName());
-
-        return view;
+        holder.headPortrait.setImageResource(friend.getHeadPortrait());
+        holder.name.setText(friend.getName());
+        if (mListView.isItemChecked(position)){
+            holder.checkBox.setChecked(true);
+        }else {
+            holder.checkBox.setChecked(false);
+        }
+        return convertView;
     }
 
     public class ViewHolder {
         ImageView headPortrait;
         TextView name;
+        CheckBox checkBox;
     }
 }

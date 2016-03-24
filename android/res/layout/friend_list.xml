@@ -6,6 +6,7 @@
 
     <ListView
             android:id="@+id/friends_list"
+            android:choiceMode="multipleChoice"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
     </ListView>

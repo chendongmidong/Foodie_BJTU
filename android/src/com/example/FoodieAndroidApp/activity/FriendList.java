@@ -6,12 +6,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 import com.example.FoodieAndroidApp.R;
 import com.example.FoodieAndroidApp.model.Friend;
 import com.example.FoodieAndroidApp.widge.FriendAdapter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -20,19 +25,33 @@ import java.util.List;
 public class FriendList extends Activity {
     
     private List<Friend> friends = new ArrayList<>();
-    ListView friendsList;
-    FriendAdapter friendAdapter;
+    private ListView friendsList;
+    private FriendAdapter friendAdapter;
+    private HashSet selectedSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.friend_list);
+
         initFriends();
+        selectedSet = new HashSet();
         friendsList = (ListView) findViewById(R.id.friends_list);
-        friendAdapter = new FriendAdapter(this,R.layout.friend_item,friends);
+        friendsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        friendAdapter = new FriendAdapter(this,R.layout.friend_item,friends,friendsList);
         friendsList.setAdapter(friendAdapter);
+        friendsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                friendAdapter.notifyDataSetChanged();
+                if(friendsList.isItemChecked(position)){
+                    selectedSet.add(position);
+                }else {
+                    selectedSet.remove(position);
+                }
+            }
+        });
     }
 
     @Override
@@ -47,6 +66,9 @@ public class FriendList extends Activity {
         switch (item.getItemId()){
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.confirm_button:
+                Toast.makeText(this,selectedSet.toString(),Toast.LENGTH_SHORT).show();
         }
         return super.onOptionsItemSelected(item);
     }

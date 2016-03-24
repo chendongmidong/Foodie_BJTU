@@ -5,7 +5,7 @@
               android:layout_height="match_parent">
 
     <ImageView
-            android:id="@+id/friend_head_portrait"
+            android:id="@+id/friend_portrait"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     <TextView
@@ -16,4 +16,10 @@
             android:layout_marginLeft="10dp"
             android:textColor="#fff"
     />
+    <CheckBox
+            android:id="@+id/friend_cb"
+            android:focusableInTouchMode="false"
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 </LinearLayout>

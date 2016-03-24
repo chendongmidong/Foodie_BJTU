@@ -39,7 +39,7 @@ public class MainActivity extends FragmentActivity {
         adapter = new MyPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         tabs.setViewPager(pager);
-        setTabsValue();
+//        setTabsValue();
     }
 
     private void setTabsValue() {
@@ -57,8 +57,8 @@ public class MainActivity extends FragmentActivity {
         tabs.setIndicatorHeight((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 4, dm));
         // 设置Tab标题文字的大小
-        tabs.setTextSize((int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_SP, 16, dm));
+//        tabs.setTextSize((int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_SP, 16, dm));
         // 设置Tab Indicator的颜色
         tabs.setIndicatorColor(Color.parseColor("#45c01a"));
         // 设置选中Tab文字的颜色 (这是我自定义的一个方法)
@@ -85,7 +85,7 @@ public class MainActivity extends FragmentActivity {
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = { "Fragment1", "Fragment2", "Fragment3", "Fragment4"};
+        private final String[] TITLES = { "Fragment1", "Fragment2", "Fragment3"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
