@@ -4,6 +4,18 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:id="@+id/gallery"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+        </LinearLayout>
+
+    </HorizontalScrollView>
     <ListView
             android:id="@+id/friends_list"
             android:choiceMode="multipleChoice"
