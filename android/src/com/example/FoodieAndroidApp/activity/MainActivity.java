@@ -39,7 +39,7 @@ public class MainActivity extends FragmentActivity {
         adapter = new MyPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
         tabs.setViewPager(pager);
-//        setTabsValue();
+        setTabsValue();
     }
 
     private void setTabsValue() {
@@ -47,9 +47,6 @@ public class MainActivity extends FragmentActivity {
         tabs.setShouldExpand(true);
         // 设置Tab的分割线是透明的
         tabs.setDividerColor(Color.TRANSPARENT);
-
-
-
         // 设置Tab底部线的高度
         tabs.setUnderlineHeight((int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_DIP, 1, dm));
@@ -85,7 +82,7 @@ public class MainActivity extends FragmentActivity {
 
     public class MyPagerAdapter extends FragmentPagerAdapter {
 
-        private final String[] TITLES = { "Fragment1", "Fragment2", "Fragment3"};
+        private final String[] TITLES = { "Fragment1", "Fragment2", "Fragment3","Fragment4"};
 
         public MyPagerAdapter(FragmentManager fm) {
             super(fm);
@@ -103,6 +100,7 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
+
             return SuperAwesomeCardFragment.newInstance(position);
         }
 
