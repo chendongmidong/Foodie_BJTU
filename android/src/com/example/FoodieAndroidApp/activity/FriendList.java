@@ -27,7 +27,7 @@ public class FriendList extends Activity {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.friend_list);
+        setContentView(R.layout.friendlist_activity);
 
         initFriends();
         selectedSet = new HashSet();

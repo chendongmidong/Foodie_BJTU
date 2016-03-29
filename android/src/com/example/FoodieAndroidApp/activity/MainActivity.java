@@ -16,6 +16,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import com.astuetz.PagerSlidingTabStrip;
 import com.example.FoodieAndroidApp.R;
+import com.example.FoodieAndroidApp.fragment.MomentFragment;
+import com.example.FoodieAndroidApp.fragment.RestaurantFragment;
 import com.example.FoodieAndroidApp.fragment.SuperAwesomeCardFragment;
 
 
@@ -100,8 +102,16 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         public Fragment getItem(int position) {
-
-            return SuperAwesomeCardFragment.newInstance(position);
+            switch (position){
+                case 0:
+                    return RestaurantFragment.getInstance();
+                case 2:
+                    return MomentFragment.getInstance();
+                default:
+                    return SuperAwesomeCardFragment.newInstance(position);
+            }
+//            return SuperAwesomeCardFragment.newInstance(position);
+//            return RestaurantFragment.getInstance();
         }
 
     }
