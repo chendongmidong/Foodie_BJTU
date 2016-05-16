@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-4-30 18:46:38 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.edu.bjtu.vo.Userinfo" table="USERINFO">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="username" type="java.lang.String">
+            <column name="USERNAME" />
+        </property>
+        <property name="password" type="java.lang.String">
+            <column name="PASSWORD" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="PHONE" />
+        </property>
+        <property name="privilege" type="java.lang.String">
+            <column name="PRIVILEGE" />
+        </property>
+        <property name="userKind" type="int">
+            <column name="USERKIND" />
+        </property>
+        <property name="hostAccount" type="java.lang.String">
+            <column name="HOSTACCOUNT" />
+        </property>
+        <property name="status" type="java.lang.String">
+            <column name="STATUS" />
+        </property>
+        <property name="subAccountStatus" type="java.lang.String">
+            <column name="SUBACCOUNTSTATUS" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="EMAIL" />
+        </property>
+        <property name="phoneStatus" type="java.lang.String">
+            <column name="PHONESTATUS" />
+        </property>
+        <property name="emailStatus" type="java.lang.String">
+            <column name="EMAILSTATUS" />
+        </property>
+        <property name="securityQuestionStatus" type="java.lang.String">
+            <column name="SECURITYQUESTIONSTATUS" />
+        </property>
+        <property name="securityQuestionOne" type="java.lang.String">
+            <column name="SECURITYQUESTIONONE" />
+        </property>
+        <property name="securityAnswerOne" type="java.lang.String">
+            <column name="SECURITYANSWERONE" />
+        </property>
+        <property name="securityQuestionTwo" type="java.lang.String">
+            <column name="SECURITYQUESTIONTWO" />
+        </property>
+        <property name="securityAnswerTwo" type="java.lang.String">
+            <column name="SECURITYANSWERTWO" />
+        </property>
+        <property name="securityQuestionThree" type="java.lang.String">
+            <column name="SECURITYQUESTIONTHREE" />
+        </property>
+        <property name="securityAnswerThree" type="java.lang.String">
+            <column name="SECURITYANSWERTHREE" />
+        </property>
+        <property name="validateTime" type="java.util.Date">
+            <column name="VALIDATETIME" />
+        </property>
+        <property name="headIcon" type="java.lang.String">
+            <column name="HEADICON" />
+        </property>
+        <property name="feedback" type="java.lang.String">
+            <column name="FEEDBACK" />
+        </property>
+    </class>
+</hibernate-mapping>

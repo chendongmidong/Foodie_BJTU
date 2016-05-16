@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-16 15:43:54 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.edu.bjtu.vo.Dish" table="DISH">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="price" type="float">
+            <column name="PRICE" />
+        </property>
+        <property name="category" type="java.lang.String">
+            <column name="CATEGORY" />
+        </property>
+        <property name="score" type="double">
+            <column name="SCORE" />
+        </property>
+        <property name="frequency" type="double">
+            <column name="FREQUENCY" />
+        </property>
+        <property name="restaurantid" type="java.lang.String">
+            <column name="RESTAURANTID" />
+        </property>
+    </class>
+</hibernate-mapping>

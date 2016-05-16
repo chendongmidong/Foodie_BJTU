@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-8 15:50:01 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="cn.edu.bjtu.vo.Moment" table="MOMENT">
+        <id name="id" type="java.lang.String">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="avatorUrl" type="java.lang.String">
+            <column name="AVATORURL" />
+        </property>
+        <property name="content" type="java.lang.String">
+            <column name="CONTENT" />
+        </property>
+        <property name="imageUrls" type="java.lang.String">
+            <column name="IMAGEURLS" />
+        </property>
+    </class>
+</hibernate-mapping>
