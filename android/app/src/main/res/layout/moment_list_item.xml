@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="6dp" >
+
+    <ImageView
+            android:id="@+id/avator"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/empty_photo" />
+
+    <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/avator"
+            android:textColor="#333399"
+            android:text="悟空"/>
+
+    <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/avator"
+            android:textColor="#000000"
+            android:layout_below="@id/user_name"/>
+
+
+    <com.foodie.bjtu.foodie.widget.NoScrollGridView
+            android:id="@+id/images"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/avator"
+            android:layout_below="@id/content"
+            android:horizontalSpacing="1dp"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:visibility="gone"
+            android:verticalSpacing="1dp" />
+
+</RelativeLayout>

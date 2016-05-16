@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Foodie</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="viewpager_indicator">%1$d/%2$d</string>
+
+    <string name="pull_to_refresh">Pull-down to refresh</string>
+    <string name="release_to_refresh">Release to refresh</string>
+    <string name="refreshing">Refreshing…</string>
+    <string name="not_updated_yet">Have not refreshed</string>
+    <string name="updated_at">Refreshed before %1$s</string>
+    <string name="updated_just_now">Refreshed just now</string>
+    <string name="time_error">Time error</string>
+</resources>
