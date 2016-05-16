@@ -1,5 +1,6 @@
 package com.foodie.bjtu.foodie.activity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView(){
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -66,20 +69,20 @@ public class MainActivity extends AppCompatActivity {
         File cacheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(), "FoodieImage/Cache");
 //        File cacheDir = this.getFilesDir();
 
-        ImageLoaderConfiguration config =new  ImageLoaderConfiguration
-                .Builder(getApplicationContext())
-                .memoryCacheExtraOptions(480, 800)
-                .threadPriority(Thread.NORM_PRIORITY - 2)
-                .denyCacheImageMultipleSizesInMemory()
-                .memoryCache(new LRULimitedMemoryCache(40 * 1024 * 1024))
-                .memoryCacheSize(50 * 1024 * 1024)
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
-                .diskCacheSize(200 * 1024 * 1024)
-                .tasksProcessingOrder(QueueProcessingType.LIFO)
-                .diskCacheFileCount(200)
-                .diskCache(new UnlimitedDiskCache(cacheDir))
-                .defaultDisplayImageOptions(defaultOptions)
-                .build();
+        ImageLoaderConfiguration config = ImageLoaderConfiguration.createDefault(getApplicationContext());
+//               new ImageLoaderConfiguration.Builder(getApplicationContext())
+//                .memoryCacheExtraOptions(480, 800)
+//                .threadPriority(Thread.NORM_PRIORITY - 2)
+//                .denyCacheImageMultipleSizesInMemory()
+//                .memoryCache(new LRULimitedMemoryCache(40 * 1024 * 1024))
+//                .memoryCacheSize(50 * 1024 * 1024)
+//                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+//                .diskCacheSize(200 * 1024 * 1024)
+//                .tasksProcessingOrder(QueueProcessingType.LIFO)
+//                .diskCacheFileCount(200)
+//                .diskCache(new UnlimitedDiskCache(cacheDir))
+//                .defaultDisplayImageOptions(defaultOptions)
+//                .build();
 
         ImageLoader.getInstance().init(config);
     }
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
@@ -100,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.group_chat) {
+            item.setIntent(new Intent(this,FriendListActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -139,11 +142,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Restaurants";
+                    return "Restaurant";
                 case 1:
                     return "SECTION 2";
                 case 2:
-                    return "Moments";
+                    return "Moment";
             }
             return null;
         }

@@ -6,12 +6,28 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.NFC" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="3170850b2a89bec0857ae944b6f6d557"/>
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/app_name"
@@ -30,6 +46,12 @@
         <activity android:name=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.SignUpActivity"/>
+        <activity android:name=".activity.AddMomentActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.FriendListActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".activity.GPSBaseiActivity"/>
+        <activity android:name=".activity.GPSNaviActivity"/>
     </application>
 
 </manifest>

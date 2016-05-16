@@ -6,12 +6,12 @@ package com.foodie.bjtu.foodie.entity;
 public class Restaurant {
 
     private int id;
-    private int photo;
+    private String photo;
     private String name;
     private int grade;
     private String location;
 
-    public Restaurant(int id, int photo, String name, int grade, String location) {
+    public Restaurant(int id, String photo, String name, int grade, String location) {
         this.id = id;
         this.photo = photo;
         this.name = name;
@@ -23,7 +23,7 @@ public class Restaurant {
         return id;
     }
 
-    public int getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 

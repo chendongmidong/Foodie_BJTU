@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.foodie.bjtu.foodie.R;
 import com.foodie.bjtu.foodie.entity.Restaurant;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.List;
 
@@ -49,15 +50,16 @@ public class RestaurantAdapter extends BaseAdapter {
             view = LayoutInflater.from(mContext).inflate(R.layout.restaurant_item,null);
             mViewHolder.restaurantPhoto = (ImageView)view.findViewById(R.id.restaurant_photo);
             mViewHolder.restaurantName = (TextView) view.findViewById(R.id.restaurant_name);
-            mViewHolder.restaurantGrade = (ImageView)view.findViewById(R.id.restaurant_grade);
+            mViewHolder.restaurantGrade = (TextView)view.findViewById(R.id.restaurant_grade);
             mViewHolder.restaurantLocation = (TextView) view.findViewById(R.id.restaurant_location);
             view.setTag(mViewHolder);
         }else {
             mViewHolder = (ViewHolder) view.getTag();
         }
-        mViewHolder.restaurantPhoto.setImageResource(mRestaurant.getPhoto());
+        ImageLoader.getInstance().displayImage(mRestaurant.getPhoto(), mViewHolder.restaurantPhoto);
+
         mViewHolder.restaurantName.setText(mRestaurant.getName());
-        mViewHolder.restaurantGrade.setImageResource(mRestaurant.getGrade());
+        mViewHolder.restaurantGrade.setText(mRestaurant.getGrade()+"");
         mViewHolder.restaurantLocation.setText(mRestaurant.getLocation());
         return view;
     }
@@ -65,7 +67,7 @@ public class RestaurantAdapter extends BaseAdapter {
     class ViewHolder{
         ImageView restaurantPhoto;
         TextView restaurantName;
-        ImageView restaurantGrade;
+        TextView restaurantGrade;
         TextView restaurantLocation;
     }
 }

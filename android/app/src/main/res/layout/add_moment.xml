@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent" >
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#333333">
+        <Button
+                android:id="@+id/back_button"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="10dip"
+                android:background="@drawable/back"/>
+
+        <Button
+                android:id="@+id/send_button"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dip"
+                android:text="send"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_background"/>
+    </RelativeLayout>
+
+    <EditText
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:hint="Say something for this moment"
+            android:maxLines="4"
+            android:gravity="top"
+            android:layout_height="125dp"/>
+
+    <com.foodie.bjtu.foodie.widget.NoScrollGridView
+            android:id="@+id/selected_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:horizontalSpacing="1dp"
+            android:verticalSpacing="1dp"
+            android:stretchMode="columnWidth"
+            android:numColumns="4"
+            android:visibility="gone"
+            />
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/add_button"
+                android:layout_width="45dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dip"
+                android:text="add"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_background"/>
+    </RelativeLayout>
+
+</LinearLayout>

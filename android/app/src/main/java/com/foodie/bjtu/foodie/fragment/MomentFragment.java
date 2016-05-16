@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.foodie.bjtu.foodie.Constant;
 import com.foodie.bjtu.foodie.R;
+import com.foodie.bjtu.foodie.activity.AddMomentActivity;
 import com.foodie.bjtu.foodie.activity.MomentListActivity;
 import com.foodie.bjtu.foodie.activity.SearchMomentActivity;
 
@@ -45,8 +46,8 @@ public class MomentFragment extends Fragment {
         addMoment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent photoIntent = new Intent(getContext(), AddMomentAcitvity.class);
-//                startActivity(photoIntent);
+                Intent photoIntent = new Intent(getContext(), AddMomentActivity.class);
+                startActivity(photoIntent);
             }
         });
 

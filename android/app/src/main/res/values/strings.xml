@@ -12,4 +12,10 @@
     <string name="updated_at">Refreshed before %1$s</string>
     <string name="updated_just_now">Refreshed just now</string>
     <string name="time_error">Time error</string>
+
+    <string name="app_id">输入您讯飞的appid</string>
+    <string name="preference_default_tts_role">xiaoyan</string>
+    <string name="preference_key_tts_speed">tts_speed</string>
+    <string name="preference_key_tts_volume">tts_volume</string>
+    <string name="preference_key_tts_pitch">tts_pitch</string>
 </resources>
