@@ -1,5 +1,6 @@
 package com.foodie.bjtu.foodie.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,9 +8,12 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -19,7 +23,13 @@ import android.widget.Toast;
 
 import com.foodie.bjtu.foodie.R;
 import com.foodie.bjtu.foodie.adapter.MyGridAdapter;
+import com.foodie.bjtu.foodie.util.EncodeCallBackListener;
+import com.foodie.bjtu.foodie.util.HttpCallBackListenr;
+import com.foodie.bjtu.foodie.util.HttpUtil;
+import com.foodie.bjtu.foodie.util.ImageUtil;
 import com.foodie.bjtu.foodie.widget.NoScrollGridView;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,7 +53,21 @@ public class AddMomentActivity extends AppCompatActivity{
     private Uri imageUri;
     private List<String> selectedImages;
     private int selectNum = 0;
+    private String address = "";
 
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message message) {
+            switch (message.what){
+                case -1:
+                    Toast.makeText(AddMomentActivity.this,"Upload Fail",Toast.LENGTH_LONG).show();
+                    break;
+                case 1:
+                    Toast.makeText(AddMomentActivity.this,"Upload Successful",Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +94,27 @@ public class AddMomentActivity extends AppCompatActivity{
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //send
+                ImageUtil.EncodeImage(selectedImages, new EncodeCallBackListener() {
+                    @Override
+                    public void onFinish(List<String> encodedImages) {
+                        HttpUtil.sendHttpPostRequest(address, "content=" + encodedImages.get(0), new HttpCallBackListenr() {
+                            @Override
+                            public void onFinish(String response) {
+                                handleMomentResponse(AddMomentActivity.this,response);
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onError() {
+
+                    }
+                });
             }
         });
         addButton.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +138,7 @@ public class AddMomentActivity extends AppCompatActivity{
                                             imageName = "IMG" + nameIndex + ".jpg";
                                             editor.putInt("nameIndex", ++nameIndex);
                                             editor.commit();
-                                            File outputImage = new File(Environment.getExternalStorageDirectory(), "Nourriture/images/" + imageName);
+                                            File outputImage = new File(Environment.getExternalStorageDirectory(), "Foodie/images/" + imageName);
                                             try {
                                                 if (outputImage.exists()) {
                                                     outputImage.delete();
@@ -226,12 +270,7 @@ public class AddMomentActivity extends AppCompatActivity{
         }else{
             gridView.setVisibility(View.GONE);
         }
-//        viewHolder.images.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                imageBrower(position,moment.getImageUrl());
-//            }
-//        });
+
     }
 
     private void imageBrower(int position, String[] urls) {
@@ -239,5 +278,27 @@ public class AddMomentActivity extends AppCompatActivity{
         intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS, urls);
         intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, position);
         startActivity(intent);
+    }
+
+    public void handleMomentResponse(Context context, String response){
+        if (!TextUtils.isEmpty(response)){
+            try {
+                JSONObject jsonObjectSon= new JSONObject(response);
+                final int code = jsonObjectSon.getInt("code");
+                Message message = new Message();
+                if (code == -1){
+                    message.what = -1;
+                }else {
+                    message.what = 1;
+
+                    Intent intent = new Intent(AddMomentActivity.this,MomentListActivity.class);
+                    startActivity(intent);
+                }
+                handler.sendMessage(message);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 }

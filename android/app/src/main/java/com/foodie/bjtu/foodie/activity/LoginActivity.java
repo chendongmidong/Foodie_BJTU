@@ -24,19 +24,20 @@ import org.json.JSONObject;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    String address = "http://123.56.143.59:8585/Foodie/user/login";
+    String address;
     EditText userName ;
     EditText password ;
+    int code;
 
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message message) {
             switch (message.what){
                 case -1:
-                    Toast.makeText(LoginActivity.this,"Log In fail",Toast.LENGTH_LONG);
+                    Toast.makeText(LoginActivity.this,"Log In fail",Toast.LENGTH_LONG).show();
                     break;
                 case 1:
-                    Toast.makeText(LoginActivity.this,"Log In Successful",Toast.LENGTH_LONG);
+                    Toast.makeText(LoginActivity.this,"Log In Successful",Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                address+="?username="+userName.getText().toString()+"&password="+password.getText().toString();
+                address ="http://123.56.143.59:8585/Foodie/user/login"+"?username="+userName.getText().toString()+"&password="+password.getText().toString();
                 HttpUtil.sendHttpRequest(address,new HttpCallBackListenr() {
                     @Override
                     public void onFinish(String response) {
@@ -83,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(response)){
             try {
                 JSONObject jsonObjectSon= new JSONObject(response);
-                final int code = jsonObjectSon.getInt("code");
+                code = jsonObjectSon.getInt("code");
                 Message message = new Message();
                 if (code == 0){
                     message.what = -1;

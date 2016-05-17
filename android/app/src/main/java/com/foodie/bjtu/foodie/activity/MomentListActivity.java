@@ -3,6 +3,7 @@ package com.foodie.bjtu.foodie.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -49,13 +50,16 @@ public class MomentListActivity extends Activity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intent = getIntent();
         flag = intent.getIntExtra("flag", 0);
+
         if (flag == Constant.FRIENDS_MOMENTS) {
             address = "http://123.56.143.59:8585/Foodie/moments/getFriendsMoments";
         } else if (flag == Constant.FRIENDS_MOMENTS) {
-            address = "http://http://123.56.143.59:8585/moments/getMyMoments/?name=参数";
+            SharedPreferences sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+            int userId = sharedPreferences.getInt("user",0);
+            address = "http://http://123.56.143.59:8585/moments/getMyMoments/?name="+userId;
         }else if (flag ==3){
             String keyWord = intent.getStringExtra("keyWord");
-            address = "http://http://123.56.143.59:8585/moments/searchMoments?key=参数";
+            address = "http://http://123.56.143.59:8585/moments/searchMoments?key="+keyWord;
             Log.d("keyWord",keyWord);
         }
         ImageLoader imageLoader = ImageLoader.getInstance();

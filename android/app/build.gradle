@@ -24,10 +24,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'com.android.support:design:23.3.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile files('libs/AMap3DMap_3.3.1_AMapNavi_1.8.0_20160420.jar')
+    compile files('libs/jpush-android-2.1.5.jar')
 }

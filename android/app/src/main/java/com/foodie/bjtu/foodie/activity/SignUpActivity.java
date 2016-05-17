@@ -42,10 +42,10 @@ public class SignUpActivity extends AppCompatActivity {
         public void handleMessage(Message message) {
             switch (message.what){
                 case -1:
-                    Toast.makeText(SignUpActivity.this,"Sign Up fail",Toast.LENGTH_LONG);
+                    Toast.makeText(SignUpActivity.this,"Sign Up fail",Toast.LENGTH_LONG).show();
                     break;
                 case 1:
-                    Toast.makeText(SignUpActivity.this,"Sign Up Successful",Toast.LENGTH_LONG);
+                    Toast.makeText(SignUpActivity.this,"Sign Up Successful",Toast.LENGTH_LONG).show();
                     break;
             }
         }
@@ -102,7 +102,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     SharedPreferences.Editor mEditor = getSharedPreferences("userInfo",MODE_PRIVATE).edit();
                     mEditor.putString("phoneNum",phoneNum.getText().toString());
-                    mEditor.putString("userId",code+"");
+                    mEditor.putInt("userId",code);
                     mEditor.putString("userName",userName.getText().toString());
                     mEditor.putString("password",password.getText().toString());
                     mEditor.commit();
