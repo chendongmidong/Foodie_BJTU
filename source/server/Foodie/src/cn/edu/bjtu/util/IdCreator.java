@@ -26,4 +26,7 @@ public class IdCreator {
 	public static String createDishId(){
 		return "DI"+(int)(Math.random()*100000000);
 	}
+	public static String createOrderId(){
+		return "OR"+(int)(Math.random()*100000000);
+	}
 }

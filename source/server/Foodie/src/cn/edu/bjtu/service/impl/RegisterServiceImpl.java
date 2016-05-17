@@ -29,11 +29,12 @@ public class RegisterServiceImpl implements RegisterService {
 		}
 		user.setId(IdCreator.createUserId());
 		User u = registerDao.get("from User where username='"+user.getUsername()+"'");
-		if(!((u.getUsername()).equals((user.getUsername())))){
-		   registerDao.save(user);
-		   return user.getId();
+		if(u!=null){
+			return -1;
+		}else{
+			registerDao.save(user);
+			return user.getId();
 		}
-		return -1;
 	}
 
 }

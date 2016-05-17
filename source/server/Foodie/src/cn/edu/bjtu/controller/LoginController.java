@@ -19,14 +19,17 @@ import cn.edu.bjtu.vo.User;
  *
  */
 @Controller
-@RequestMapping(value="/user",produces="text/html;charset=UTF-8",method=RequestMethod.POST)
+@RequestMapping(value="/user",produces="text/html;charset=UTF-8",method=RequestMethod.GET)
 public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
 	@RequestMapping(value="login")
 	@ResponseBody
-	public String login(User user) throws JSONException{
+	public String login(String username,String password) throws JSONException{
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(password);
 		User getFromDatabase = loginService.checkLogin(user.getUsername(), user.getPassword());
 		String code = "{\"code\":\"";
 		if(getFromDatabase!=null){

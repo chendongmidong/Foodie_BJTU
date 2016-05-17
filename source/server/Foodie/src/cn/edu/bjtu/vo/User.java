@@ -3,8 +3,6 @@
  */
 package cn.edu.bjtu.vo;
 
-import java.io.Serializable;
-
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Component;
  *
  */
 @Component
-public class User implements Serializable {
+public class User{
 	
 	private int id;
 	private String username;
@@ -159,6 +157,4 @@ public class User implements Serializable {
 	public void setCoupons(String coupons) {
 		this.coupons = coupons;
 	}
-	
-
 }

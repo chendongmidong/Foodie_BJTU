@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONObject;
-
 import cn.bjtu.edu.bean.RestaurantBean;
 import cn.edu.bjtu.service.RestaurantService;
 import cn.edu.bjtu.vo.Restaurant;

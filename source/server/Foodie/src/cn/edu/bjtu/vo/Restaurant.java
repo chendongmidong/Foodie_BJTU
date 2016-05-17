@@ -24,6 +24,34 @@ public class Restaurant {
 	private String name;
 	private String address;
 	private int score;
+	private String phone;
+	private String intro;
+	
+	
+	/**
+	 * @return phone
+	 */
+	public String getPhone() {
+		return phone;
+	}
+	/**
+	 * @param phone 要设置的 phone
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	/**
+	 * @return intro
+	 */
+	public String getIntro() {
+		return intro;
+	}
+	/**
+	 * @param intro 要设置的 intro
+	 */
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
 	/**
 	 * @return id
 	 */

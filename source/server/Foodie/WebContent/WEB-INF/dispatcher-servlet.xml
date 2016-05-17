@@ -63,6 +63,7 @@
 				<value>cn/edu/bjtu/vo/Restaurant.hbm.xml</value>
 				<value>cn/edu/bjtu/vo/Coupon.hbm.xml</value>
 				<value>cn/edu/bjtu/vo/Dish.hbm.xml</value>
+				<value>cn/edu/bjtu/vo/Orderinfo.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

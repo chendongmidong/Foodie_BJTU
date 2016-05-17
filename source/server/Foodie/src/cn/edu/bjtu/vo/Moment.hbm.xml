@@ -20,5 +20,8 @@
         <property name="imageUrls" type="java.lang.String">
             <column name="IMAGEURLS" />
         </property>
+        <property name="userid" type="int">
+            <column name="USERID" />
+        </property>
     </class>
 </hibernate-mapping>

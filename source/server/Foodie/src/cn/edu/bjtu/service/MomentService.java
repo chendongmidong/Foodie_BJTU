@@ -17,5 +17,6 @@ public interface MomentService {
 	
 	public List<Moment> getAllMoments();
 	public Moment getMomentByName(String name);
+	public String updateImageUrls(String userid,String strImageContent,String type);
 
 }

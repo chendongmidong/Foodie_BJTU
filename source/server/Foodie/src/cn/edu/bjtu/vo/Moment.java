@@ -17,6 +17,20 @@ public class Moment {
 	private String avatorUrl;
 	private String content;
 	private String imageUrls;
+	private int userid;
+	
+	/**
+	 * @return userid
+	 */
+	public int getUserid() {
+		return userid;
+	}
+	/**
+	 * @param userid ÒªÉèÖÃµÄ userid
+	 */
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 	/**
 	 * @return id
 	 */

@@ -6,9 +6,12 @@ package cn.edu.bjtu.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.sf.json.JSONArray;
@@ -84,5 +87,15 @@ public class MomentController {
 		}
 		JSONArray moments = JSONArray.fromObject(mb);
 		return moments.toString();
+	}
+	
+	@RequestMapping(value="updateImageUrls",method=RequestMethod.POST,produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String updateImageUrls(String userid,String strImageContent) throws JSONException{
+		String type = "friend";
+		String address = momentService.updateImageUrls(userid, strImageContent, type);
+		String code = "{\"url\":\""+address+"\"}";
+		JSONObject result = new JSONObject(code);
+		return result.toString();
 	}
 }

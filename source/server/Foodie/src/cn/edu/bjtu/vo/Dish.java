@@ -19,6 +19,21 @@ public class Dish {
 	private double score;
 	private double frequency;
 	private String restaurantid;
+	private String photo;
+	
+	
+	/**
+	 * @return photo
+	 */
+	public String getPhoto() {
+		return photo;
+	}
+	/**
+	 * @param photo ÒªÉèÖÃµÄ photo
+	 */
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	/**
 	 * @return id
 	 */

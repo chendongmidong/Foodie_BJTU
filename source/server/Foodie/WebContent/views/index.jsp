@@ -15,7 +15,7 @@
             password:<input type="text" name="password"><br><br>
             phone:<input type="text" name="phone"><br><br>
             avatar:<input type="text" name="avatar"><br><br>
-            <input type="submit" value="提交">
+            <input type="submit" value="提交"> 
      </form>
      <br><br>
      <h2>用户登录</h2><br>
@@ -44,5 +44,18 @@
                             餐馆ID:<input type="text" name="restaurantId"><br>
            <input type="submit" value="提交">
      </form>
+     <br><br>
+     <h2>测试JPush</h2><br><br>
+     <form action="test">
+         <input type="submit" value="测试">
+     </form>
+     <br><br>
+     <h2>测试更新用户头像</h2>
+     <form action="user/updateAvatar" method="post">
+         userid:<input type="text" name="userid"><br>
+         strImageContent:<input type="text" name="strImageContent"><br>
+         <input type="submit" value="提交">
+     </form>
+     
 </body>
 </html>
