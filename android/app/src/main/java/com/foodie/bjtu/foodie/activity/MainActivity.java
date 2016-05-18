@@ -12,7 +12,6 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +20,11 @@ import android.widget.TextView;
 
 import com.foodie.bjtu.foodie.R;
 import com.foodie.bjtu.foodie.fragment.MomentFragment;
-import com.foodie.bjtu.foodie.fragment.NFCFragment;
+import com.foodie.bjtu.foodie.fragment.UserFragment;
 import com.foodie.bjtu.foodie.fragment.RestaurantFragment;
-import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import java.io.File;
@@ -142,14 +137,13 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return RestaurantFragment.newInstance();
                 case 1:
-                    return NFCFragment.newInstance();
-                case 2:
                     return MomentFragment.newInstance();
+                case 2:
+                    return UserFragment.newInstance();
                 default:
                     return PlaceholderFragment.newInstance(position + 1);
             }
         }
-
         @Override
         public int getCount() {
             // Show 3 total pages.
@@ -162,9 +156,9 @@ public class MainActivity extends AppCompatActivity {
                 case 0:
                     return "Restaurant";
                 case 1:
-                    return "SECTION 2";
-                case 2:
                     return "Moment";
+                case 2:
+                    return "Function";
             }
             return null;
         }

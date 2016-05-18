@@ -1,10 +1,13 @@
 package com.foodie.bjtu.foodie.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -50,10 +53,19 @@ public class HttpUtil {
                     URL url = new URL(address);
                     connection = (HttpURLConnection)url.openConnection();
                     connection.setRequestMethod("POST");
+                    connection.setDoInput(true);
+                    connection.setDoOutput(true);
                     connection.setConnectTimeout(8000);
                     connection.setConnectTimeout(8000);
-                    DataOutputStream out = new DataOutputStream(connection.getOutputStream());
-                    out.writeBytes(content);
+                    OutputStream os = connection.getOutputStream();
+                    BufferedWriter writer = new BufferedWriter(
+                            new OutputStreamWriter(os));
+                    writer.write(content);
+                    writer.flush();
+                    writer.close();
+                    os.close();
+//                    DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+//                    out.writeBytes(content);
                     InputStream inputStream = connection.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
                     StringBuilder response = new StringBuilder();

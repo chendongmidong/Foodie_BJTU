@@ -55,8 +55,8 @@ public class MomentListActivity extends Activity {
             address = "http://123.56.143.59:8585/Foodie/moments/getFriendsMoments";
         } else if (flag == Constant.FRIENDS_MOMENTS) {
             SharedPreferences sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
-            int userId = sharedPreferences.getInt("user",0);
-            address = "http://http://123.56.143.59:8585/moments/getMyMoments/?name="+userId;
+            String userName = sharedPreferences.getString("userName","");
+            address = "http://http://123.56.143.59:8585/moments/getMyMoments/?name="+userName;
         }else if (flag ==3){
             String keyWord = intent.getStringExtra("keyWord");
             address = "http://http://123.56.143.59:8585/moments/searchMoments?key="+keyWord;

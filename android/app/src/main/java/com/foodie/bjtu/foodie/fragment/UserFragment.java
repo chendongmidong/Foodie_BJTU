@@ -7,23 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 
 import com.foodie.bjtu.foodie.R;
 import com.foodie.bjtu.foodie.activity.LineUpActivity;
-import com.foodie.bjtu.foodie.adapter.RestaurantAdapter;
-import com.foodie.bjtu.foodie.entity.Restaurant;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zhao on 2016/5/15.
  */
-public class NFCFragment extends Fragment {
+public class UserFragment extends Fragment {
 
-    public static NFCFragment newInstance(){
-        NFCFragment rf = new NFCFragment();
+    public static UserFragment newInstance(){
+        UserFragment rf = new UserFragment();
         Bundle b = new Bundle();
         rf.setArguments(b);
         return rf;

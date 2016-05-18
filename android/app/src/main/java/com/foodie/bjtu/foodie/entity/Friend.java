@@ -5,20 +5,18 @@ package com.foodie.bjtu.foodie.entity;
  */
 public class Friend {
 
-    public Friend(String name, int headPortrait) {
+    public Friend(String name, String headPortrait) {
         this.name = name;
         this.headPortrait = headPortrait;
     }
 
     private String name;
-    private int headPortrait;
+    private String headPortrait;
 
     public String getName() {
         return name;
     }
-
-    public int getHeadPortrait() {
+    public String getHeadPortrait() {
         return headPortrait;
     }
-
 }

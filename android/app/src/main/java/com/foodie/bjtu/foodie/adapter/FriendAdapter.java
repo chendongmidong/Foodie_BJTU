@@ -67,7 +67,7 @@ public class FriendAdapter extends BaseAdapter{
         }else {
             mViewHolder = (ViewHolder) view.getTag();
         }
-        mViewHolder.headPortrait.setImageResource(friend.getHeadPortrait());
+        ImageLoader.getInstance().displayImage(friend.getHeadPortrait(), mViewHolder.headPortrait);
         mViewHolder.name.setText(friend.getName());
         if (mListView.isItemChecked(i)){
             mViewHolder.checkBox.setChecked(true);

@@ -1,9 +1,11 @@
 package com.foodie.bjtu.foodie.activity;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,11 +15,19 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.foodie.bjtu.foodie.R;
 import com.foodie.bjtu.foodie.adapter.FriendAdapter;
 import com.foodie.bjtu.foodie.entity.Friend;
+import com.foodie.bjtu.foodie.entity.Moment;
+import com.foodie.bjtu.foodie.util.HttpCallBackListenr;
+import com.foodie.bjtu.foodie.util.HttpUtil;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -34,6 +44,8 @@ public class FriendListActivity extends AppCompatActivity{
     private HashSet selectedSet;
     private LinearLayout galleryView;
     private List<Integer> positionList;
+    private ProgressBar progressBar;
+    private final String address = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +53,15 @@ public class FriendListActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        initFriends();
         selectedSet = new HashSet();
         positionList = new ArrayList<Integer>();
         galleryView = (LinearLayout)findViewById(R.id.gallery);
         friendsList = (ListView) findViewById(R.id.friends_list);
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
         friendsList.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         friendAdapter = new FriendAdapter(friends,this,friendsList);
         friendsList.setAdapter(friendAdapter);
+        refresh();
         friendsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,6 +88,53 @@ public class FriendListActivity extends AppCompatActivity{
                 }
             }
         });
+
+
+    }
+
+    private void refresh(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.VISIBLE);
+            }
+        });
+        HttpUtil.sendHttpRequest(address, new HttpCallBackListenr() {
+            @Override
+            public void onFinish(String response) {
+                handleMomentResponse(FriendListActivity.this, response);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        friendAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                });
+            }
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
+    }
+
+    public void handleMomentResponse(Context context, String response){
+        if (!TextUtils.isEmpty(response)){
+            try {
+
+                JSONArray moments = new JSONArray(response);
+                for (int i=0;i<moments.length();i++)
+                {
+                    JSONObject jsonObjectSon= (JSONObject)moments.opt(i);
+                    String name = jsonObjectSon.getString("name");
+                    String avatar = jsonObjectSon.getString("avatorUrl");
+                    Friend friend = new Friend(name,avatar);
+                    friends.add(friend);
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -99,24 +159,8 @@ public class FriendListActivity extends AppCompatActivity{
     private void addAvator(int position){
         View view1 = LayoutInflater.from(FriendListActivity.this).inflate(R.layout.gallery_item,null);
         ImageView imageView = (ImageView)view1.findViewById(R.id.gallery_image);
-        imageView.setImageResource(friends.get(position).getHeadPortrait());
+        ImageLoader.getInstance().displayImage(friends.get(position).getHeadPortrait(),imageView);
         galleryView.addView(view1);
     }
 
-    private void initFriends() {
-        Friend apple = new Friend("Apple", R.drawable.arrow);
-        friends.add(apple);
-        Friend banana = new Friend("Banana", R.drawable.button_background);
-        friends.add(banana);
-        Friend banana2 = new Friend("Banana", R.drawable.button_background);
-        friends.add(banana2);
-        Friend banana3 = new Friend("Banana", R.drawable.button_background);
-        friends.add(banana3);
-        Friend banana4 = new Friend("Banana", R.drawable.button_background);
-        friends.add(banana4);
-        Friend banana5 = new Friend("Banana", R.drawable.button_background);
-        friends.add(banana5);
-
-
-    }
 }

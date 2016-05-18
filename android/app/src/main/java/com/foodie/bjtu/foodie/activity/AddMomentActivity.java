@@ -1,5 +1,6 @@
 package com.foodie.bjtu.foodie.activity;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,6 +15,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -21,9 +23,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.foodie.bjtu.foodie.R;
 import com.foodie.bjtu.foodie.adapter.MyGridAdapter;
 import com.foodie.bjtu.foodie.util.EncodeCallBackListener;
+
 import com.foodie.bjtu.foodie.util.HttpCallBackListenr;
 import com.foodie.bjtu.foodie.util.HttpUtil;
 import com.foodie.bjtu.foodie.util.ImageUtil;
@@ -53,7 +57,8 @@ public class AddMomentActivity extends AppCompatActivity{
     private Uri imageUri;
     private List<String> selectedImages;
     private int selectNum = 0;
-    private String address = "";
+    private String address = "http://123.56.143.59:8585/Foodie/user/updateAvatar";
+
 
     Handler handler = new Handler(){
         @Override
@@ -85,6 +90,7 @@ public class AddMomentActivity extends AppCompatActivity{
         if (!imageDir.exists()){
             imageDir.mkdirs();
         }
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,24 +100,20 @@ public class AddMomentActivity extends AppCompatActivity{
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageUtil.EncodeImage(selectedImages, new EncodeCallBackListener() {
+                String temp = ImageUtil.EncodeImage(selectedImages);
+                SharedPreferences sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+                String temp2 = temp.replace("\n","");
+                String postContent = "userid=69669380&strImageContent="+temp2;
+                HttpUtil.sendHttpPostRequest(address, postContent, new HttpCallBackListenr() {
                     @Override
-                    public void onFinish(List<String> encodedImages) {
-                        HttpUtil.sendHttpPostRequest(address, "content=" + encodedImages.get(0), new HttpCallBackListenr() {
-                            @Override
-                            public void onFinish(String response) {
-                                handleMomentResponse(AddMomentActivity.this,response);
-                            }
-
-                            @Override
-                            public void onError(Exception e) {
-
-                            }
-                        });
+                    public void onFinish(String response) {
+                        Message message = new Message();
+                        message.what = 1;
+                        handler.sendMessage(message);
+                        handleMomentResponse(AddMomentActivity.this,response);
                     }
-
                     @Override
-                    public void onError() {
+                    public void onError(Exception e) {
 
                     }
                 });
@@ -215,8 +217,8 @@ public class AddMomentActivity extends AppCompatActivity{
 
     private void handleImageBeforekitKat(Intent data){
         Uri uri = data.getData();
-        //   String image = getImagePath(uri,null);
-        String image = uri.toString();
+        String image = "file://"+getImagePath(uri,null);
+//        String image = uri.toString();
         //displayImage(image);
         selectedImages.add(image);
         displayImage();
@@ -291,8 +293,8 @@ public class AddMomentActivity extends AppCompatActivity{
                 }else {
                     message.what = 1;
 
-                    Intent intent = new Intent(AddMomentActivity.this,MomentListActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(AddMomentActivity.this,MomentListActivity.class);
+//                    startActivity(intent);
                 }
                 handler.sendMessage(message);
 

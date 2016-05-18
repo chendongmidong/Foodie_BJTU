@@ -45,11 +45,11 @@ public class LineUpActivity extends AppCompatActivity implements NfcAdapter.Crea
                 "Beam Time: " + System.currentTimeMillis());
 
         SharedPreferences mSharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
-        String userInfo = mSharedPreferences.getString("userId","-1") + ","+mSharedPreferences.getString("phoneNum","0");
+        String userInfo = mSharedPreferences.getInt("userId",-1)+"";
 
         NdefMessage msg = new NdefMessage(
                 new NdefRecord[] { NdefRecord.createMime(
-                        "application/vnd.com.example.android.beam",userInfo.getBytes(Charset.forName("US-ASCII")))
+                        "application/com.foodie.bjtu.foodie",userInfo.getBytes(Charset.forName("US-ASCII")))
                         /**
                          * The Android Application Record (AAR) is commented out. When a device
                          * receives a push with an AAR in it, the application specified in the AAR
