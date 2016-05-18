@@ -5,15 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
+
 
 import com.foodie.bjtu.foodie.R;
 import com.foodie.bjtu.foodie.activity.GPSNaviActivity;
+import com.foodie.bjtu.foodie.activity.RestaurantDetailActivity;
 import com.foodie.bjtu.foodie.adapter.RestaurantAdapter;
 import com.foodie.bjtu.foodie.entity.Restaurant;
 import com.foodie.bjtu.foodie.util.HttpCallBackListenr;
@@ -58,9 +62,14 @@ public class RestaurantFragment extends Fragment {
         mRestaurantAdapter = new RestaurantAdapter(mRestaurants,getActivity());
         mRestaurantListView.setAdapter(mRestaurantAdapter);
         mRestaurantListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getActivity(), GPSNaviActivity.class);
+                Intent intent  = new Intent(getActivity(), RestaurantDetailActivity.class);
+                intent.putExtra("restaurantid",mRestaurants.get(i).getId());
+                intent.putExtra("restaurantname",mRestaurants.get(i).getName());
+
+                Log.e("restaurantname",mRestaurants.get(i).getName());
                 startActivity(intent);
             }
         });

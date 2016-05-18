@@ -78,6 +78,9 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".activity.GPSBaseiActivity"/>
         <activity android:name=".activity.GPSNaviActivity"/>
+        <activity android:name=".activity.ReserveActivity"/>
+        <activity android:name=".activity.RestaurantDetailActivity"/>
+        <activity android:name=".activity.OrderDishActivity"/>
 
         <!-- Required SDK核心功能-->
         <activity

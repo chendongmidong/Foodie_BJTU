@@ -6,10 +6,14 @@ package com.foodie.bjtu.foodie.entity;
 public class Restaurant {
 
     private int id;
+    private String stringid;
     private String photo;
     private String name;
     private int grade;
     private String location;
+    private String intro;
+    private String phone;
+
 
     public Restaurant(int id, String photo, String name, int grade, String location) {
         this.id = id;
@@ -37,5 +41,29 @@ public class Restaurant {
 
     public String getLocation() {
         return location;
+    }
+
+    public String getStringid() {
+        return stringid;
+    }
+
+    public void setStringid(String stringid) {
+        this.stringid = stringid;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
