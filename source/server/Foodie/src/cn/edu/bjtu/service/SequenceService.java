@@ -14,5 +14,7 @@ import cn.edu.bjtu.vo.Sequence;
 public interface SequenceService {
 	
 	public List<Sequence> operSequence(String userid,String type);
+	
+	public List<Sequence> all();
 
 }

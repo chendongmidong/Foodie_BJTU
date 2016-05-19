@@ -166,5 +166,7 @@
          <input type="submit" value="提交"> 
      </form>
      
+     <a href="sequence/all"><h2>ALLList</h2></a>
+     
 </body>
 </html>

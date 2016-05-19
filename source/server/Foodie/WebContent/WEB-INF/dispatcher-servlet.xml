@@ -67,6 +67,7 @@
 				<value>cn/edu/bjtu/vo/Orderinfo_User_View.hbm.xml</value>
 				<value>cn/edu/bjtu/vo/Activity.hbm.xml</value>
 				<value>cn/edu/bjtu/vo/Sequence.hbm.xml</value>
+				<value>cn/edu/bjtu/vo/Sequence_User_View.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -71,4 +71,10 @@ public class SequenceServiceImpl implements SequenceService {
 		}
 	}
 
+	@Override
+	public List<Sequence> all() {
+		String hql = "from Sequence";
+		return sequenceDao.find(hql);
+	}
+
 }
