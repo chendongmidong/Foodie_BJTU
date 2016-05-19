@@ -6,6 +6,8 @@ package cn.edu.bjtu.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +56,40 @@ public class RestaurantController {
 		List<Restaurant> re = new ArrayList<Restaurant>();
 		re.add(restau);
 		JSONArray restaurant = JSONArray.fromObject(re);
+		return restaurant.toString();
+	}
+	
+	@RequestMapping(value="insertRestaurant")
+	@ResponseBody
+	public String insertNewRes(Restaurant res) throws JSONException{
+		String code = "{\"code\":\"";
+		Restaurant restauSaved = restaurantService.insertRestaurant(res);
+		code = code + restauSaved.getId() + "\"}";
+		JSONObject result = new JSONObject(code);
+		return result.toString();
+	}
+	
+	@RequestMapping("login")
+	@ResponseBody
+	public String restauLogin(String name,String password) throws JSONException{
+		String code = "{\"code\":\"";
+		Restaurant res = restaurantService.checkLogin(name, password);
+		if(res!=null){
+			code = code + res.getId() + "\"}";
+		}else{
+			code = code +"0\"}";
+		}
+		JSONObject result = new JSONObject(code);
+		return result.toString();
+	}
+	
+	@RequestMapping("getRestaurantById")
+	@ResponseBody
+	public String getRestaurantbyid(String restaurantid){
+		Restaurant re = restaurantService.getRestaurantById(restaurantid);
+		List<Restaurant> r = new ArrayList<Restaurant>();
+		r.add(re);
+		JSONArray restaurant = JSONArray.fromObject(r);
 		return restaurant.toString();
 	}
 

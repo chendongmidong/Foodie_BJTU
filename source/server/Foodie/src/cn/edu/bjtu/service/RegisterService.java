@@ -11,6 +11,6 @@ import cn.edu.bjtu.vo.User;
  */
 public interface RegisterService {
 	
-	public int regist(User user);
+	public int regist(User user,String strImageContent);
 
 }

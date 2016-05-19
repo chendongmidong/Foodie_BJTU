@@ -19,19 +19,19 @@ import cn.edu.bjtu.vo.User;
  *
  */
 @Controller
-@RequestMapping(value="/user",produces="text/html;charset=UTF-8",method=RequestMethod.GET)
+@RequestMapping(value="/user",produces="text/html;charset=UTF-8",method=RequestMethod.POST)
 public class RegisterController {
 	@Autowired
 	RegisterService registerService;
 	
 	@RequestMapping(value="register")
 	@ResponseBody
-	public String userRegist(String username,String password,String phone) throws JSONException{
+	public String userRegist(String username,String password,String phone,String strImageContent) throws JSONException{
 		User user = new User();
 		user.setUsername(username);
 		user.setPassword(password);
 		user.setPhone(phone);
-		String code = "{\"code\":\""+registerService.regist(user)+"\"}";
+		String code = "{\"code\":\""+registerService.regist(user,strImageContent)+"\"}";
 		JSONObject result = new JSONObject(code);
 		return result.toString();
 	}

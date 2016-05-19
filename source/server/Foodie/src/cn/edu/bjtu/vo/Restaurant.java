@@ -26,8 +26,22 @@ public class Restaurant {
 	private int score;
 	private String phone;
 	private String intro;
+	private String password;
 	
 	
+	
+	/**
+	 * @return password
+	 */
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password ÒªÉèÖÃµÄ password
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	/**
 	 * @return phone
 	 */

@@ -24,12 +24,12 @@
 	<context:component-scan base-package="cn.edu.bjtu.vo"></context:component-scan>
 
 	<!-- 对静态资源的处理 -->
-	 <mvc:resources location="/views/images/" mapping="/images/**"/><!-- /images/**的请求都会到/views/images/下去找，下面的类似 -->
+	<mvc:resources location="/views/images/" mapping="/images/**"/><!-- /images/**的请求都会到/views/images/下去找，下面的类似 -->
 	<mvc:resources location="/views/css/" mapping="/css/**"/>
 	<mvc:resources location="/views/js/" mapping="/js/**"/>
 	<mvc:resources location="/views/" mapping="/views/**"/>
 	<mvc:resources location="/" mapping="/**"/>
-	<mvc:resources location="/views/" mapping="*.htm"/> 
+	<mvc:resources location="/views/" mapping="*.html"/> 
 	<!-- <mvc:default-servlet-handler/> -->
 
 	<!-- 下面是视图解析器 -->
@@ -64,6 +64,9 @@
 				<value>cn/edu/bjtu/vo/Coupon.hbm.xml</value>
 				<value>cn/edu/bjtu/vo/Dish.hbm.xml</value>
 				<value>cn/edu/bjtu/vo/Orderinfo.hbm.xml</value>
+				<value>cn/edu/bjtu/vo/Orderinfo_User_View.hbm.xml</value>
+				<value>cn/edu/bjtu/vo/Activity.hbm.xml</value>
+				<value>cn/edu/bjtu/vo/Sequence.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

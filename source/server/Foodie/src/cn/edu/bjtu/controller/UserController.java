@@ -39,10 +39,19 @@ public class UserController {
 		String type = "user";
 		int id = Integer.valueOf(userid);
 		String address = userService.updateUserAvatar(id, strImageContent, type);
-		String code = "{\"url\":\""+address+"\"}";
+		String relAddress = "http://123.56.143.59:8585/Foodie/images/user/"+userid+"."+"jpg";
+		String code = "{\"url\":\""+relAddress+"\"}";
 		
 		JSONObject result = new JSONObject(code);
 		return result.toString();
+	}
+	
+	@RequestMapping(value="user/getFriends",produces="text/html;charset=UTF-8")
+	@ResponseBody
+	public String getMyFriends(String userid){
+		List<User> friends = userService.getFriends(userid);
+		JSONArray friends_json = JSONArray.fromObject(friends);
+		return friends_json.toString();
 	}
 
 }

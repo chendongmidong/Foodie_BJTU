@@ -18,6 +18,7 @@ import net.sf.json.JSONArray;
 
 import cn.bjtu.edu.bean.MomentBean;
 import cn.edu.bjtu.service.MomentService;
+import cn.edu.bjtu.util.ParseUrl;
 import cn.edu.bjtu.vo.Moment;
 
 /**
@@ -32,8 +33,12 @@ public class MomentController {
 	
 	@RequestMapping("insertMoment")
 	@ResponseBody
-	public void insertMoment(Moment moment){
-		momentService.insertMoment(moment);
+	public String insertMoment(Moment moment){
+		Moment momentInstance = momentService.insertMoment(moment);
+		List<Moment> moments = new ArrayList<Moment>();
+		moments.add(momentInstance);
+		JSONArray moments_json = JSONArray.fromObject(moments);
+		return moments_json.toString();
 	}
 	@RequestMapping("getFriendsMoments")
 	@ResponseBody
@@ -94,7 +99,8 @@ public class MomentController {
 	public String updateImageUrls(String userid,String strImageContent) throws JSONException{
 		String type = "friend";
 		String address = momentService.updateImageUrls(userid, strImageContent, type);
-		String code = "{\"url\":\""+address+"\"}";
+		String relAddress = ParseUrl.parseUrl(address);
+		String code = "{\"url\":\""+relAddress+"\"}";
 		JSONObject result = new JSONObject(code);
 		return result.toString();
 	}

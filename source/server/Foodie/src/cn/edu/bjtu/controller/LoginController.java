@@ -33,7 +33,7 @@ public class LoginController {
 		User getFromDatabase = loginService.checkLogin(user.getUsername(), user.getPassword());
 		String code = "{\"code\":\"";
 		if(getFromDatabase!=null){
-			code = code +"1\"}";
+			code = code +getFromDatabase.getId()+"\"}";
 		}else{
 			code = code +"0\"}";
 		}

@@ -26,11 +26,11 @@ public class MomentServiceImpl implements MomentService {
 	MomentDao momentDao;
 
 	@Override
-	public boolean insertMoment(Moment moment) {
+	public Moment insertMoment(Moment moment) {
 		moment.setId(IdCreator.createMomentId());
 		
 		momentDao.save(moment);
-		return true;
+		return moment;
 	}
 
 	@Override

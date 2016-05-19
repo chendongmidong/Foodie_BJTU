@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.bjtu.dao.RestaurantDao;
 import cn.edu.bjtu.service.RestaurantService;
+import cn.edu.bjtu.util.IdCreator;
 import cn.edu.bjtu.vo.Restaurant;
 
 /**
@@ -32,6 +33,25 @@ public class RestaurantServiceImpl implements RestaurantService {
 	@Override
 	public Restaurant getRestaurantByName(String name) {
 		String hql = "from Restaurant where name='"+name+"'";
+		return restaurantDao.get(hql);
+	}
+
+	@Override
+	public Restaurant insertRestaurant(Restaurant res) {
+		res.setId(IdCreator.createRestaurantId());
+		restaurantDao.save(res);
+		return res;
+	}
+
+	@Override
+	public Restaurant checkLogin(String name, String password) {
+		String hql = "from Restaurant where name='"+name+"' and password='"+password+"'";
+		return restaurantDao.get(hql);
+	}
+
+	@Override
+	public Restaurant getRestaurantById(String restaurantid) {
+		String hql = "from Restaurant where id='"+restaurantid+"'";
 		return restaurantDao.get(hql);
 	}
 

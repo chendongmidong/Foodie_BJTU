@@ -14,5 +14,7 @@ import cn.edu.bjtu.vo.Dish;
 public interface DishService {
 	
 	public List<Dish> getDishesByRestauId(String restauId);
+	
+	public boolean insertDish(Dish dish);
 
 }

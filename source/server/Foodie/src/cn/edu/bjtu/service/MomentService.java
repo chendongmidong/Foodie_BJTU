@@ -13,7 +13,7 @@ import cn.edu.bjtu.vo.Moment;
  */
 public interface MomentService {
 	
-	public boolean insertMoment(Moment moment);
+	public Moment insertMoment(Moment moment);
 	
 	public List<Moment> getAllMoments();
 	public Moment getMomentByName(String name);
