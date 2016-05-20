@@ -9,13 +9,10 @@
             android:layout_centerHorizontal="true"
             android:visibility="gone"
             android:layout_height="wrap_content"/>
-    <com.foodie.bjtu.foodie.widget.RefreshableView
-            android:id="@+id/refreshable_view"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" >
+
         <ListView
                 android:id="@+id/show_moments"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
-    </com.foodie.bjtu.foodie.widget.RefreshableView>
+
 </RelativeLayout>

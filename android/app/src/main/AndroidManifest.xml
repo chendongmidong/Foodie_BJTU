@@ -81,6 +81,9 @@
         <activity android:name=".activity.ReserveActivity"/>
         <activity android:name=".activity.RestaurantDetailActivity"/>
         <activity android:name=".activity.OrderDishActivity"/>
+        <activity android:name=".activity.UserInfoActivity"/>
+        <activity android:name=".activity.InviteActivity"/>
+        <activity android:name=".activity.NfcOrderActivity"/>
 
         <!-- Required SDK核心功能-->
         <activity

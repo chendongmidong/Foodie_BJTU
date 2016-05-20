@@ -46,7 +46,7 @@ public class MomentListActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.moments_list);
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
-        refreshableView = (RefreshableView) findViewById(R.id.refreshable_view);
+//        refreshableView = (RefreshableView) findViewById(R.id.refreshable_view);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intent = getIntent();
         flag = intent.getIntExtra("flag", 0);
@@ -70,16 +70,16 @@ public class MomentListActivity extends Activity {
         momentAdapter = new MomentAdapter(list,MomentListActivity.this);
         listView.setAdapter(momentAdapter);
         refresh();
-        refreshableView.setOnRefreshListener(new RefreshableView.PullToRefreshListener() {
-            @Override
-            public void onRefresh() {
-                if (!list.isEmpty()){
-                    list.clear();
-                }
-                refresh();
-                refreshableView.finishRefreshing();
-            }
-        }, 0);
+//        refreshableView.setOnRefreshListener(new RefreshableView.PullToRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                if (!list.isEmpty()){
+//                    list.clear();
+//                }
+//                refresh();
+//                refreshableView.finishRefreshing();
+//            }
+//        }, 0);
     }
 
     private void refresh(){

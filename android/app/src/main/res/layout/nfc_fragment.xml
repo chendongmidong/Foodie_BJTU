@@ -3,8 +3,53 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
+    <TextView
+        android:id="@+id/friends_moments"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="User Information"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#fff"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="2dp"/>
+
+    <TextView
         android:id="@+id/line_up"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="52dp"
+        android:text="Line Up"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#fff"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="2dp"/>
+
+    <TextView
+        android:id="@+id/add_moment"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Sign"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#fff"/>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="2dp"/>
+
+    <TextView
+        android:id="@+id/search_moments"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Search"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:background="#fff"/>
 </LinearLayout>

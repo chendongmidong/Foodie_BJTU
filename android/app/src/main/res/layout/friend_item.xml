@@ -19,7 +19,7 @@
     <CheckBox
             android:id="@+id/friend_cb"
             android:focusableInTouchMode="false"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
             android:focusable="false"
             android:clickable="false"
             android:layout_width="wrap_content" android:layout_height="wrap_content"/>

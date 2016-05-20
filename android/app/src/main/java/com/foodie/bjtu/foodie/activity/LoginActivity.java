@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,12 @@ import com.foodie.bjtu.foodie.util.HttpCallBackListenr;
 import com.foodie.bjtu.foodie.util.HttpUtil;
 
 import org.json.JSONObject;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 /**
  * Created by zhao on 2016/5/17.
@@ -78,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
     public void handleMomentResponse(Context context, String response){
@@ -90,6 +99,13 @@ public class LoginActivity extends AppCompatActivity {
                     message.what = -1;
                 }else {
                     message.what = 1;
+                    SharedPreferences.Editor mEditor = getSharedPreferences("userInfo",MODE_PRIVATE).edit();
+                    Set<String> s = new HashSet<>();
+                    s.add(code+"");
+                    JPushInterface.setAliasAndTags(getApplicationContext(), null, s, mTagsCallback);
+                    mEditor.putInt("userId",code);
+                    mEditor.commit();
+
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     startActivity(intent);
                 }
@@ -100,4 +116,29 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
+    private final TagAliasCallback mTagsCallback = new TagAliasCallback() {
+
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            String logs ;
+            switch (code) {
+                case 0:
+                    logs = "Set tag and alias success";
+
+                    break;
+
+                case 6002:
+                    logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
+
+                    break;
+
+                default:
+                    logs = "Failed with errorCode = " + code;
+
+            }
+
+        }
+
+    };
 }

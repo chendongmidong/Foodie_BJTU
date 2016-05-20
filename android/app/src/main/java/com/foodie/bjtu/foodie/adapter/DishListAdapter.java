@@ -77,7 +77,10 @@ public class DishListAdapter extends BaseAdapter {
         price.setText(dishList.get(position).getPrice() + "");
 
         ImageView dish_picture = (ImageView)convertView.findViewById(R.id.dish_picture);
-        ImageLoader.getInstance().displayImage(dishList.get(position).getPhoto()+"",dish_picture);
+        if (dishList.get(position).getPhoto().equals("")||dishList.get(position).getPhoto()==null){
+        }else {
+            ImageLoader.getInstance().displayImage(dishList.get(position).getPhoto() + "", dish_picture);
+        }
 
 //        ImageView dish_add = (ImageView)convertView.findViewById(R.id.dish_add);
 //        ImageView dish_minus = (ImageView)convertView.findViewById(R.id.dish_minus);

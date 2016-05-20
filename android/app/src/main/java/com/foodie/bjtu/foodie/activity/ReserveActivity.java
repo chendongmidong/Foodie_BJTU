@@ -48,7 +48,7 @@ public class ReserveActivity extends Activity{
     private EditText seat_count;
     private EditText reserve_time;
     private String restaurantid;
-    private String userid;
+    private int userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +79,8 @@ public class ReserveActivity extends Activity{
             @Override
             public void onClick(View v) {
                 SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-                userid = sharedPreferences.getString("userId", "");
-                address = baseaddress+ "userid="+userid+"&restaurantid="+restaurantid+"&time="+reserve_time.getText()+"&seats="+seat_count.getText() ;
+                userid = sharedPreferences.getInt("userId", 0);
+                address = baseaddress+ "userid="+userid+"&restaurantid="+restaurantid+"&time="+"2016-05-16-08"+"&seats="+seat_count.getText() ;
                 Log.e("address_reserve:", address);
                 HttpUtil.sendHttpRequest(address, new HttpCallBackListenr() {
                     @Override

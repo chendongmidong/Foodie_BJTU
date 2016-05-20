@@ -2,6 +2,8 @@ package com.foodie.bjtu.foodie.activity;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,11 +44,12 @@ public class FriendListActivity extends AppCompatActivity{
     private List<Friend> friends = new ArrayList<>();
     private ListView friendsList;
     private FriendAdapter friendAdapter;
-    private HashSet selectedSet;
+    private HashSet<String> selectedSet;
+    private HashSet<Integer> selectedIdSet;
     private LinearLayout galleryView;
     private List<Integer> positionList;
     private ProgressBar progressBar;
-    private final String address = "";
+    private  String address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +57,10 @@ public class FriendListActivity extends AppCompatActivity{
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        selectedSet = new HashSet();
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
+        address = "http://123.56.143.59:8585/Foodie/user/getFriends?userid="+sharedPreferences.getInt("userId",0);
+        selectedSet = new HashSet<String>();
+        selectedIdSet = new HashSet<Integer>();
         positionList = new ArrayList<Integer>();
         galleryView = (LinearLayout)findViewById(R.id.gallery);
         friendsList = (ListView) findViewById(R.id.friends_list);
@@ -67,11 +74,13 @@ public class FriendListActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 friendAdapter.notifyDataSetChanged();
                 if(friendsList.isItemChecked(position)){
-                    selectedSet.add(position);
+                    selectedSet.add(friends.get(position).getName());
+                    selectedIdSet.add(friends.get(position).getId());
                     positionList.add(position);
                     addAvator(position);
                 }else {
                     selectedSet.remove(position);
+                    selectedIdSet.remove(position);
 
                     //完成在上面的scrollView动态显示头像功能
                     for (int i= 0;i<positionList.size();i++){
@@ -126,9 +135,10 @@ public class FriendListActivity extends AppCompatActivity{
                 for (int i=0;i<moments.length();i++)
                 {
                     JSONObject jsonObjectSon= (JSONObject)moments.opt(i);
-                    String name = jsonObjectSon.getString("name");
-                    String avatar = jsonObjectSon.getString("avatorUrl");
-                    Friend friend = new Friend(name,avatar);
+                    String name = jsonObjectSon.getString("username");
+                    String avatar = jsonObjectSon.getString("avatar");
+                    int id = jsonObjectSon.getInt("id");
+                    Friend friend = new Friend(name,id,avatar);
                     friends.add(friend);
                 }
             }catch (Exception e){
@@ -152,6 +162,18 @@ public class FriendListActivity extends AppCompatActivity{
                 break;
             case R.id.confirm_button:
                 Toast.makeText(this,selectedSet.toString(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(FriendListActivity.this,InviteActivity.class);
+                Iterator<String> iterator = selectedSet.iterator();
+                Iterator<Integer> integerIterator = selectedIdSet.iterator();
+                String[] temp = new String[selectedSet.size()];
+                int[] ints = new int[selectedIdSet.size()];
+                for (int i = 0;i <selectedSet.size();i++){
+                    temp[i] = iterator.next()+"    ";
+                    ints[i] = integerIterator.next();
+                }
+                intent.putExtra("friends",temp);
+                intent.putExtra("friendsId",ints);
+                startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
     }

@@ -45,7 +45,7 @@ public class LineUpActivity extends AppCompatActivity implements NfcAdapter.Crea
                 "Beam Time: " + System.currentTimeMillis());
 
         SharedPreferences mSharedPreferences = getSharedPreferences("userInfo",MODE_PRIVATE);
-        String userInfo = mSharedPreferences.getInt("userId",-1)+"";
+        String userInfo = mSharedPreferences.getInt("userId",-1)+","+mSharedPreferences.getString("userName","");
 
         NdefMessage msg = new NdefMessage(
                 new NdefRecord[] { NdefRecord.createMime(

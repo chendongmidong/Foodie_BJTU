@@ -1,6 +1,7 @@
 package com.foodie.bjtu.foodie.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +52,13 @@ public class OrderDishActivity extends Activity{
         sure_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent intent = new Intent(OrderDishActivity.this,NfcOrderActivity.class);
+                String temp = "";
+                for (Dish d:reserve_dish_list){
+                    temp+=d.getName() +"      ";
+                }
+                intent.putExtra("order",temp);
+                startActivity(intent);
             }
         });
 

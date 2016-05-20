@@ -32,4 +32,9 @@ dependencies {
     compile files('libs/AMap3DMap_3.3.1_AMapNavi_1.8.0_20160420.jar')
     compile files('libs/jpush-android-2.1.5.jar')
     compile files('libs/BASE64.jar')
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0'
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'io.reactivex:rxandroid:1.1.0'
 }
